@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/potions")
-public class PotionController extends BaseAlchemyController<PotionItem> {
+public class PotionRestController extends BaseAlchemyController<PotionItem> {
     private final PotionService potionService;
 
-    public PotionController(PotionService potionService) {
+    public PotionRestController(PotionService potionService) {
         super(potionService);
         this.potionService = potionService;
     }

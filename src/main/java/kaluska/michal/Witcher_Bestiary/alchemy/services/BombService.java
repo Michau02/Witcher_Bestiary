@@ -6,7 +6,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BombService extends BaseAlchemyService<BombItem> {
+    private final BombRepository bombRepository;
+
     public BombService(BombRepository bombRepository) {
         super(bombRepository);
+        this.bombRepository = bombRepository;
+    }
+
+    public BombItem findByName(String name) {
+        return bombRepository.findByName(name);
     }
 }

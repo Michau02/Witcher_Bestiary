@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BombRepository extends JpaRepository<BombItem, Long> {
+    BombItem findByName(String name);
 }
