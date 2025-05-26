@@ -1,5 +1,8 @@
 package kaluska.michal.Witcher_Bestiary;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Ingredient {
 
     // fast impl just so it exists

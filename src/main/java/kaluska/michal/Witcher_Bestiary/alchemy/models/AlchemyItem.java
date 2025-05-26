@@ -17,6 +17,8 @@ public abstract class AlchemyItem {
     private Long id;
 
     private String name;
+    
+    @ElementCollection
     private List<Ingredient> ingredients;
     private int requiredLevelToCraft;
     private int costOfCrafting;
