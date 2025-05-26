@@ -10,7 +10,6 @@ import java.util.List;
 public class BaseAlchemyService<T extends AlchemyItem> {
     protected final JpaRepository<T, Long> repository;
 
-
     public List<T> findAll() {
         return repository.findAll();
     }
@@ -23,13 +22,13 @@ public class BaseAlchemyService<T extends AlchemyItem> {
         return repository.save(entity);
     }
 
-    public void update(T entity) {
+    public T update(Long id, T entity) {
         // doing it manually for now - until I create mappers - just to see it work :)
 
-        T old = findById(entity.getId());
+        T old = findById(id);
         old.setName(entity.getName());
         old.setDescription(entity.getDescription());
-        repository.save(old);
+        return repository.save(old);
     }
 
     public void deleteById(Long id) {

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PotionRepository extends JpaRepository<PotionItem, Long> {
+    PotionItem findByName(String name);
 }

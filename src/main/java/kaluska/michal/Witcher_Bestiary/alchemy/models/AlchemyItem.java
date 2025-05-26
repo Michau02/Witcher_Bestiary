@@ -1,7 +1,6 @@
 package kaluska.michal.Witcher_Bestiary.alchemy.models;
 
 import jakarta.persistence.*;
-import kaluska.michal.Witcher_Bestiary.Ingredient;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,15 +12,21 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class AlchemyItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    
-    @ElementCollection
-    private List<Ingredient> ingredients;
-    private int requiredLevelToCraft;
+    private String description;
     private int costOfCrafting;
     private int itemLevel;
-    private String description;
+
+    @OneToMany(mappedBy = "alchemyItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AlchemyIngredient> ingredients;
+
+    public void setIngredients(List<AlchemyIngredient> ingredients) {
+        this.ingredients = ingredients;
+        if (ingredients != null) {
+            ingredients.forEach(i -> i.setAlchemyItem(this));
+        }
+    }
 }

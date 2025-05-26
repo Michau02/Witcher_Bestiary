@@ -6,7 +6,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PotionService extends BaseAlchemyService<PotionItem> {
+    private final PotionRepository potionRepository;
+
     public PotionService(PotionRepository potionRepository) {
         super(potionRepository);
+        this.potionRepository = potionRepository;
+    }
+
+    public PotionItem findByName(String name) {
+        return potionRepository.findByName(name);
     }
 }
