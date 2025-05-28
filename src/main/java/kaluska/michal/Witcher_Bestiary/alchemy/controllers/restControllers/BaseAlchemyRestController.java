@@ -1,4 +1,4 @@
-package kaluska.michal.Witcher_Bestiary.alchemy.controllers;
+package kaluska.michal.Witcher_Bestiary.alchemy.controllers.restControllers;
 
 import kaluska.michal.Witcher_Bestiary.alchemy.models.AlchemyItem;
 import kaluska.michal.Witcher_Bestiary.alchemy.services.BaseAlchemyService;
@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequiredArgsConstructor
-@RequestMapping("/api")
-public abstract class BaseAlchemyController<T extends AlchemyItem> {
+public abstract class BaseAlchemyRestController<T extends AlchemyItem> {
     protected final BaseAlchemyService<T> service;
 
     @GetMapping

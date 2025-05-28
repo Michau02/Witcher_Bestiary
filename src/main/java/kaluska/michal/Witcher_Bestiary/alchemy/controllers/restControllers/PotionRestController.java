@@ -1,4 +1,4 @@
-package kaluska.michal.Witcher_Bestiary.alchemy.controllers;
+package kaluska.michal.Witcher_Bestiary.alchemy.controllers.restControllers;
 
 import kaluska.michal.Witcher_Bestiary.alchemy.models.PotionItem;
 import kaluska.michal.Witcher_Bestiary.alchemy.services.PotionService;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/potions")
-public class PotionRestController extends BaseAlchemyController<PotionItem> {
+@RequestMapping("/api/potions")
+public class PotionRestController extends BaseAlchemyRestController<PotionItem> {
     private final PotionService potionService;
 
     public PotionRestController(PotionService potionService) {

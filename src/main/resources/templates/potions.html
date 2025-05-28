@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Potions List</title>
+    <style>
+        body {
+            font-family: "JetBrains Mono", sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 2rem auto;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #343434;
+        }
+
+        th {
+            background-color: #535353;
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="text-align:center;">List of Potions</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Toxicity</th>
+        <th>Charges</th>
+        <th>Duration (s)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="potion : ${potions}">
+        <td th:text="${potion.id}">1</td>
+        <td th:text="${potion.toxicity}">Swallow</td>
+        <td th:text="${potion.charges}">Regeneration</td>
+        <td th:text="${potion.durationTimeInSeconds}">30</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
