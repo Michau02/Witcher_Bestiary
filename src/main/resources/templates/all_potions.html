@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Potions List</title>
+    <link rel="stylesheet" th:href="@{/css/potions_style.css}">
+</head>
+<body>
+
+<h1 style="text-align:center;">List of Potions</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Cost</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="potion : ${potions}"
+        th:attr="onclick=|window.location.href='/potions/${potion.id}'|"
+        style="cursor: pointer;">
+
+        <td th:text="${potion.id}"></td>
+        <td th:text="${potion.name}"></td>
+        <td th:text="${potion.costOfCrafting}"></td>
+        <td th:text="${potion.description}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

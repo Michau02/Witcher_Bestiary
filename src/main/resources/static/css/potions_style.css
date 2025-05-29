@@ -1,0 +1,25 @@
+body {
+    font-family: "JetBrains Mono", sans-serif;
+    background-color: #404040;
+    color: #F1F1F1;
+}
+
+table {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #111111;
+}
+
+th {
+    background-color: #202020;
+}
+
+tr:hover {
+    background-color: #444;
+    color: white;
+}

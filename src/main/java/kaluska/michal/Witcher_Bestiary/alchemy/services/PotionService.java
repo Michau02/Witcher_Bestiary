@@ -17,9 +17,7 @@ public class PotionService extends BaseAlchemyService<PotionItem> {
 
     @Override
     public List<PotionItem> findAll() {
-        return List.of(new PotionItem(20, 20, 20)
-                , new PotionItem(30, 30, 30),
-                new PotionItem(40, 40, 40));
+        return potionRepository.findAll();
     }
 
     public PotionItem findByName(String name) {

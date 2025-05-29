@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Potion: ' + ${potion.name}">Potion</title>
+    <link rel="stylesheet" th:href="@{/css/potions_style.css}">
+</head>
+<body>
+
+<h1 style="text-align:center;" th:text="'Potion: ' + ${potion.name}">Potion Name</h1>
+
+<h2>
+    <span>Name: </span>
+    <span th:text="${potion.name}">Name</span>
+</h2>
+
+<h2>
+    <span>Description: </span>
+    <span th:text="${potion.description}">Description</span>
+</h2>
+
+<button onclick="location.href='/potions'">← Back to list</button>
+
+</body>
+</html>
