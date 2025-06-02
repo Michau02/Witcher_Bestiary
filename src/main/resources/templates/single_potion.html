@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <title th:text="'Potion: ' + ${potion.name}">Potion</title>
     <link rel="stylesheet" th:href="@{/css/potions_style.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+
 </head>
 <body>
+<div th:replace="fragments/upper_navbar :: upper_navbar"></div>
+
 
 <h1 style="text-align:center;" th:text="'Potion: ' + ${potion.name}">Potion Name</h1>
 
