@@ -3,8 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Alchemy</title>
+    <link rel="stylesheet" th:href="@{css/my_button.css}">
+    <link rel="stylesheet" th:href="@{css/pinned_fragments.css}">
 </head>
 <body>
+
+<div th:replace="fragments/upper_navbar :: upper_navbar"></div>
+<div th:replace="fragments/left_navbar :: left_navbar"></div>
+
+<div class="button-grid">
+    <div th:replace="fragments/my_button :: blockButton('POTIONS', '/potions')"></div>
+    <div th:replace="fragments/my_button :: blockButton('ELIXIRS', '/elixirs')"></div>
+    <div th:replace="fragments/my_button :: blockButton('OILS', '/oils')"></div>
+    <div th:replace="fragments/my_button :: blockButton('DECOCTIONS', '/decoctions')"></div>
+</div>
 
 </body>
 </html>
