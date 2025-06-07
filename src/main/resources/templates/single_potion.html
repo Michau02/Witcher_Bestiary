@@ -8,22 +8,23 @@
 
 </head>
 <body>
+<div th:replace="fragments/title-bar :: title-bar('Potion: ' + ${potion.name})"></div>
 <div th:replace="fragments/upper_navbar :: upper_navbar"></div>
 <div th:replace="fragments/left_navbar :: left_navbar"></div>
 
-<h1 style="text-align:center;" th:text="'Potion: ' + ${potion.name}">Potion Name</h1>
+<main>
+    <h2>
+        <span>Name: </span>
+        <span th:text="${potion.name}">Name</span>
+    </h2>
 
-<h2>
-    <span>Name: </span>
-    <span th:text="${potion.name}">Name</span>
-</h2>
+    <h2>
+        <span>Description: </span>
+        <span th:text="${potion.description}">Description</span>
+    </h2>
 
-<h2>
-    <span>Description: </span>
-    <span th:text="${potion.description}">Description</span>
-</h2>
-
-<button onclick="location.href='/potions'">← Back to list</button>
+    <button onclick="location.href='/potions'">← Back to list</button>
+</main>
 
 </body>
 </html>

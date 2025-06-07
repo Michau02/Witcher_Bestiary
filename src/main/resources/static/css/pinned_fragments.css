@@ -86,3 +86,17 @@
 .left-navbar a:hover {
     background-color: #0d0d0d;
 }
+
+.title-bar {
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align: center;
+    border: #1c1c1c;
+}
+
+.title-h1 {
+    font-size: 40px;
+    font-family: "JetBrains Mono", sans-serif;
+    text-decoration: underline;
+    text-shadow: #3b3097 5px 5px;
+}

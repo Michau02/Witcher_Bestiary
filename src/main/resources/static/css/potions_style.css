@@ -8,9 +8,7 @@ table {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
     overflow: hidden;
-    width: 50%;
-    margin-left: 20%;
-    margin-top: 5%;
+    width: 100%;
 }
 
 th, td {
@@ -25,4 +23,10 @@ th {
 tr:hover {
     background-color: #444;
     color: white;
+}
+
+main {
+    width: 50%;
+    margin-left: 20%;
+    margin-top: 5%;
 }
