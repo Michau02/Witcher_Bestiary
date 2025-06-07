@@ -97,6 +97,5 @@
 .title-h1 {
     font-size: 40px;
     font-family: "JetBrains Mono", sans-serif;
-    text-decoration: underline;
-    text-shadow: #3b3097 5px 5px;
+    text-shadow: #3b3097 1px 1px;
 }
