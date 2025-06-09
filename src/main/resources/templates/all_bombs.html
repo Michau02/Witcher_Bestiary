@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bomb List</title>
+    <link rel="stylesheet" th:href="@{/css/pinned_fragments.css}">
+    <link rel="stylesheet" th:href="@{css/potions_style.css}">
+
+</head>
+<body>
+<div th:replace="fragments/title-bar :: title-bar('List of bombs')"></div>
+<div th:replace="fragments/left_navbar :: left_navbar"></div>
+<div th:replace="fragments/upper_navbar :: upper_navbar"></div>
+
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Cost</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bomb : ${bombs}"
+            th:attr="onclick=|window.location.href='/bombs/${bomb.id}'|"
+            style="cursor: pointer;">
+
+            <td th:text="${bomb.id}"></td>
+            <td th:text="${bomb.name}"></td>
+            <td th:text="${bomb.costOfCrafting}"></td>
+            <td th:text="${bomb.description}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+</body>
+</html>

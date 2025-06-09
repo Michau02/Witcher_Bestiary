@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/bombs")
+@RequestMapping("/api/bombs")
 public class BombRestController extends BaseAlchemyRestController<BombItem> {
     private final BombService bombService;
 
