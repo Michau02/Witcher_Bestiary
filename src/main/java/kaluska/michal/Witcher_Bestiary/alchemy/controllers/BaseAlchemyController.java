@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequiredArgsConstructor
-@RequestMapping("/api")
 public abstract class BaseAlchemyController<T extends AlchemyItem> {
     protected final BaseAlchemyService<T> service;
 
