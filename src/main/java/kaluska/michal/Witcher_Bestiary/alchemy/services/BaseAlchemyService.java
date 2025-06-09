@@ -2,12 +2,14 @@ package kaluska.michal.Witcher_Bestiary.alchemy.services;
 
 import kaluska.michal.Witcher_Bestiary.alchemy.models.AlchemyItem;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
-public class BaseAlchemyService<T extends AlchemyItem> {
+public abstract class BaseAlchemyService<T extends AlchemyItem> {
     protected final JpaRepository<T, Long> repository;
 
     public List<T> findAll() {
@@ -23,11 +25,11 @@ public class BaseAlchemyService<T extends AlchemyItem> {
     }
 
     public T update(Long id, T entity) {
-        // doing it manually for now - until I create mappers - just to see it work :)
+        Optional<T> optOld = Optional.ofNullable(findById(id));
+        if (optOld.isEmpty()) return null;
 
-        T old = findById(id);
-        old.setName(entity.getName());
-        old.setDescription(entity.getDescription());
+        T old = optOld.get();
+        BeanUtils.copyProperties(entity, old, "id");
         return repository.save(old);
     }
 
