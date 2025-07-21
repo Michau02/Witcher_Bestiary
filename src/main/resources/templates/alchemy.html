@@ -14,13 +14,14 @@
 <div th:replace="fragments/left_navbar :: left_navbar"></div>
 
 <div class="button-grid">
-    <div th:replace="fragments/my_button :: blockButton('POTIONS', '/potions')"></div>
-    <div th:replace="fragments/my_button :: blockButton('ELIXIRS', '/elixirs')"></div>
-    <div th:replace="fragments/my_button :: blockButton('BOMBS', '/bombs')"></div>
-    <div th:replace="fragments/my_button :: blockButton('OILS', '/oils')"></div>
-    <div th:replace="fragments/my_button :: blockButton('DECOCTIONS', '/decoctions')"></div>
-    <div th:replace="fragments/my_button :: blockButton('HOME', '/home')"></div>
+    <button class="button-block" onclick="redirect('potions')">POTIONS</button>
+    <button class="button-block" onclick="redirect('elixirs')">ELIXIRS</button>
+    <button class="button-block" onclick="redirect('bombs')">BOMBS</button>
+    <button class="button-block" onclick="redirect('oils')">OILS</button>
+    <button class="button-block" onclick="redirect('decoctions')">DECOCTIONS</button>
+    <button class="button-block" onclick="redirect('home')">HOME</button>
 </div>
 
+<script src="/js/buttons.js"></script>
 </body>
 </html>

@@ -26,7 +26,8 @@ tr:hover {
 }
 
 main {
-    width: 50%;
+    display: flex;
+    justify-content: center;
+    width: 60vw;
     margin-left: 20%;
-    margin-top: 5%;
 }
