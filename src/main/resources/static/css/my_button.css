@@ -1,14 +1,15 @@
 .button-block {
     display: block;
     padding: 12px;
-    background-color: #027ac6;
+    background-color: rgba(2, 122, 198, 0.5);
     color: white;
     text-align: center;
     border-radius: 6px;
     text-decoration: none;
     font-weight: bold;
     margin: 0 auto;
-    width: 60%;
+    min-width: 60%;
+    width: fit-content;
     cursor: pointer;
     box-shadow: 2px 2px 2px black;
 }
@@ -23,11 +24,11 @@
 }
 
 .button-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 60vw;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 2vw;
-    row-gap: 4vh;
     padding-top: 5vh;
 }

@@ -52,6 +52,9 @@
 
 .upper-navbar a:hover {
     background-color: #171717;
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(to right, rgba(255, 255, 255, 0), white, rgba(255, 255, 255, 0)) 1;
 }
 
 .left-navbar {
@@ -78,10 +81,6 @@
     margin: 0;
 }
 
-.left-navbar li {
-
-}
-
 .left-navbar a {
     display: block;
     color: white;
@@ -97,16 +96,22 @@
 
 .left-navbar a:hover {
     background-color: #0d0d0d;
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(to right, rgba(255, 255, 255, 0), white, rgba(255, 255, 255, 0)) 1;
 }
 
 .title-bar {
+    margin-top: 2vh;
     margin-left: 20%;
     margin-right: 20%;
     text-align: center;
-    border: #1c1c1c;
     width: 60vw;
     display: flex;
     justify-content: center;
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(to right, rgba(255, 255, 255, 0), white, rgba(255, 255, 255, 0)) 1;
 }
 
 .title-h1 {
