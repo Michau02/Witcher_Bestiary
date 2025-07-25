@@ -9,17 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/potions")
+@RequestMapping("/alchemy/potions")
 @RequiredArgsConstructor
 public class PotionController {
 
     private final PotionService potionService;
-
-    @GetMapping()
-    public String getAllPotions(Model model) {
-        model.addAttribute("potions", potionService.findAll());
-        return "all_potions";
-    }
 
     @GetMapping("/{id}")
     public String getPotionById(Model model, @PathVariable("id") Long id) {

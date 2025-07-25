@@ -1,11 +1,13 @@
 package kaluska.michal.Witcher_Bestiary.alchemy.controllers.restControllers;
 
 import kaluska.michal.Witcher_Bestiary.alchemy.models.AlchemyItem;
+import kaluska.michal.Witcher_Bestiary.alchemy.models.dto.ItemDto;
 import kaluska.michal.Witcher_Bestiary.alchemy.services.BaseAlchemyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public abstract class BaseAlchemyRestController<T extends AlchemyItem> {
@@ -34,5 +36,12 @@ public abstract class BaseAlchemyRestController<T extends AlchemyItem> {
     @DeleteMapping
     public void delete(@RequestBody final Long id) {
         service.deleteById(id);
+    }
+    
+    @GetMapping("/dto")
+    public List<ItemDto> getItemsDto() {
+        return service.findAll().stream()
+                .map(item -> new ItemDto(item.getId(), item.getName(), item.getDescription(), item.getCostOfCrafting(), item.getItemLevel()))
+                .collect(Collectors.toList());
     }
 }

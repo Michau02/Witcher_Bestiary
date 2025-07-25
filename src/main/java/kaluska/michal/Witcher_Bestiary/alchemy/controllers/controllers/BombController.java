@@ -10,17 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/bombs")
+@RequestMapping("/alchemy/bombs")
 @RequiredArgsConstructor
 public class BombController {
     private final BombService bombService;
 
-    @GetMapping
-    public String getAllBombs(Model model) {
-        model.addAttribute("bombs", bombService.findAll());
-        return "all_bombs";
-    }
-    
     @GetMapping("/{id}")
     public String getSingleBomb(@PathVariable("id") Long id, Model model) {
         model.addAttribute("bomb", bombService.findById(id));
