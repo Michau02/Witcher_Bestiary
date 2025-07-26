@@ -5,7 +5,16 @@ const itemCategories = {
     // to be filled
 };
 
+let table;
+
+let currentData = [];
+let currentSort = {
+    key: null,
+    direction: 'asc' // or 'desc'
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+    table = document.getElementById("items-table");
     const type = window.location.href.split('/').at(-1)
 
     if (!type) {
@@ -36,26 +45,33 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function renderTable(data, type) {
-    const table = document.getElementById("items-table");
+    currentData = data;
+    table.innerHTML = "";
+
     if (!Array.isArray(data) || data.length === 0) {
         table.innerHTML = "<tr><td>No found items to display</td></tr>";
         return;
     }
-
 
     const keys = Object.keys(data[0]);
     const thead = document.createElement("thead");
     const headRow = document.createElement("tr");
     keys.forEach(key => {
         const th = document.createElement("th");
+        th.style.cursor = "pointer";
+        th.onclick = () => sortList(key);
         th.textContent = formatHeader(key);
         headRow.appendChild(th);
     });
     thead.appendChild(headRow);
     table.appendChild(thead);
 
+    renderTableBody(data, keys, type, table);
+}
 
+function renderTableBody(data, keys, type) {
     const tbody = document.createElement("tbody");
+
     data.forEach(item => {
         const row = document.createElement("tr");
         row.style.cursor = "pointer";
@@ -69,10 +85,43 @@ function renderTable(data, type) {
 
         tbody.appendChild(row);
     });
+
+    const oldTbody = table.querySelector("tbody");
+    if (oldTbody) oldTbody.remove();
+
     table.appendChild(tbody);
 }
 
 function formatHeader(key) {
     return key.replace(/([A-Z])/g, " $1")
         .replace(/^./, str => str.toUpperCase());
+}
+
+function sortList(key) {
+    console.log("SHOULD SORT");
+    if (currentSort.key === key) {
+        currentSort.direction = currentSort.direction === "asc" ? "desc" : "asc";
+    } else {
+        currentSort.key = key;
+        currentSort.direction = "asc";
+    }
+
+    const dir = (currentSort.direction) === "asc" ? 1 : -1;
+    const sorted = [...currentData].sort((a, b) => {
+        const valA = a[key];
+        const valB = b[key];
+
+
+        if (typeof valA === "string" && typeof valB === "string") {
+            return valA.localeCompare(valB) * dir;
+        }
+        if (valA > valB) {
+            return dir;
+        } else if (valA < valB) {
+            return -1 * dir;
+        } else {
+            return 0;
+        }
+    })
+    renderTableBody(sorted, Object.keys(currentData[0]), currentSort.key.split('.')[0]);
 }
