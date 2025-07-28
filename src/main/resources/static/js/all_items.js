@@ -14,6 +14,10 @@ let currentSort = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+    //for theme switching
+    const theme = localStorage.getItem("theme") || "dark";
+    document.body.classList.add(theme);
+
     table = document.getElementById("items-table");
     const type = window.location.href.split('/').at(-1)
 
@@ -125,3 +129,16 @@ function sortList(key) {
     })
     renderTableBody(sorted, Object.keys(currentData[0]), currentSort.key.split('.')[0]);
 }
+
+document.addEventListener("keypress", (event) => {
+    console.log("KEY");
+    if (event.key === "Enter") {
+        console.log(("ENTER"))
+        const currentTheme = document.body.classList.contains("dark-theme") ? "dark" : "light";
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+        document.body.classList.remove(`${currentTheme}-theme`);
+        document.body.classList.add(`${newTheme}-theme`);
+        localStorage.setItem("theme", newTheme);
+    }
+})
