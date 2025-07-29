@@ -17,22 +17,6 @@ main {
     margin: 2vh auto 0;
 }
 
-main button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 8px;
-    background-color: #202020;
-    color: white;
-    border: 1px solid white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-main button:hover {
-    background-color: #444444;
-}
-
 table {
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(255, 250, 84, 0.85);

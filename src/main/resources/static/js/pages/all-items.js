@@ -1,3 +1,5 @@
+import {capitalize, humanize} from '/js/utils/string-utils.js';
+
 const itemCategories = {
     alchemy: ['potions', 'bombs', 'elixirs', 'oils', 'decoctions'],
     armoury: ['gloves', 'shoes', 'helmets'], // to be filled
@@ -12,6 +14,7 @@ let currentSort = {
     key: null,
     direction: 'asc' // or 'desc'
 };
+let currentCategory;
 
 document.addEventListener("DOMContentLoaded", () => {
     //for theme switching
@@ -22,17 +25,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const type = window.location.href.split('/').at(-1)
 
     if (!type) {
-        document.body.innerHTML = "<p>Brak typu przedmiotu w URL. Użyj ?type=potions</p>";
+        document.body.innerHTML = "<p>No such type</p>";
         return;
     }
-
-    document.title = `${type.at(0).toUpperCase() + type.slice(1)} list`;
-    document.getElementById("title-text").textContent =
-        `${type.at(0).toUpperCase() + type.slice(1)} items`;
+    const capitalizedType = capitalize(type);
+    document.title = `${capitalizedType} list`;
+    document.getElementById("title-text").textContent = `${capitalizedType} items`;
 
     for (const [category, items] of Object.entries(itemCategories)) {
         if (items.includes(type)) {
             document.body.style.backgroundImage = `url('/img/${category}.webp')`;
+            currentCategory = category;
             break;
         }
     }
@@ -64,7 +67,7 @@ function renderTable(data, type) {
         const th = document.createElement("th");
         th.style.cursor = "pointer";
         th.onclick = () => sortList(key);
-        th.textContent = formatHeader(key);
+        th.textContent = humanize(key);
         headRow.appendChild(th);
     });
     thead.appendChild(headRow);
@@ -79,7 +82,7 @@ function renderTableBody(data, keys, type) {
     data.forEach(item => {
         const row = document.createElement("tr");
         row.style.cursor = "pointer";
-        row.onclick = () => window.location.href = `/alchemy/${type}/${item.id}`;
+        row.onclick = () => window.location.href = `/${currentCategory}/${type}/${item.id}`;
 
         keys.forEach(key => {
             const td = document.createElement("td");
@@ -96,13 +99,8 @@ function renderTableBody(data, keys, type) {
     table.appendChild(tbody);
 }
 
-function formatHeader(key) {
-    return key.replace(/([A-Z])/g, " $1")
-        .replace(/^./, str => str.toUpperCase());
-}
 
 function sortList(key) {
-    console.log("SHOULD SORT");
     if (currentSort.key === key) {
         currentSort.direction = currentSort.direction === "asc" ? "desc" : "asc";
     } else {
@@ -129,16 +127,3 @@ function sortList(key) {
     })
     renderTableBody(sorted, Object.keys(currentData[0]), currentSort.key.split('.')[0]);
 }
-
-document.addEventListener("keypress", (event) => {
-    console.log("KEY");
-    if (event.key === "Enter") {
-        console.log(("ENTER"))
-        const currentTheme = document.body.classList.contains("dark-theme") ? "dark" : "light";
-        const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-        document.body.classList.remove(`${currentTheme}-theme`);
-        document.body.classList.add(`${newTheme}-theme`);
-        localStorage.setItem("theme", newTheme);
-    }
-})

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title id="page-title"></title>
     <link rel="stylesheet" href="/css/pages/all-items.css">
+    <link rel="stylesheet" href="/css/components/back-button.css">
     <link rel="stylesheet" th:href="@{/css/components/title-bar.css}">
     <link rel="stylesheet" th:href="@{/css/components/pinned-fragments.css}">
     <link rel="stylesheet" th:href="@{/css/components/theme-switcher.css}">
@@ -17,9 +18,9 @@
         <h1 id="title-text"></h1>
     </div>
     <table id="items-table"></table>
-    <button class="main-button" onclick="history.back()">← Back</button>
+    <button class="back-button" onclick="history.back()">← Back</button>
 </main>
-<script src="/js/pages/all-items.js"></script>
+<script type="module" src="/js/pages/all-items.js"></script>
 <script src="/js/components/theme-switcher.js"></script>
 </body>
 </html>

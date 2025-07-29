@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/components/pinned-fragments.css}">
     <link rel="stylesheet" th:href="@{/css/components/theme-switcher.css}">
     <link rel="stylesheet" href="/css/pages/single-item.css">
+    <link rel="stylesheet" href="/css/components/back-button.css">
 </head>
 <body>
 
@@ -18,10 +19,10 @@
         <h1 id="title-text"></h1>
     </div>
     <div id="properties-container"></div>
-    <button class="main-button" onclick="history.back()">← Back</button>
+    <button class="back-button" onclick="history.back()">← Back</button>
 </main>
 
-<script src="/js/pages/single-item.js"></script>
+<script type="module" src="/js/pages/single-item.js"></script>
 <script src="/js/components/theme-switcher.js"></script>
 
 </body>
