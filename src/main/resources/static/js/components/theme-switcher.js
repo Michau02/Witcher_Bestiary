@@ -1,5 +1,3 @@
-let switcher;
-
 document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem("theme") || "dark";
     document.body.classList.add(`${savedTheme}-theme`);

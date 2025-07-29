@@ -1,0 +1,20 @@
+#title-bar {
+    margin-top: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: fit-content;
+    max-width: 80vw;
+    padding: 0 1em;
+    display: flex;
+    justify-content: center;
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(to right, rgba(255, 255, 255, 0), white, rgba(255, 255, 255, 0)) 1;
+}
+
+#title-h1 {
+    font-size: 2em;
+    font-family: "JetBrains Mono", sans-serif;
+    text-shadow: #3b3097 1px 1px;
+}

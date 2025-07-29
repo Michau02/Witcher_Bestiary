@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id="page-title"></title>
+    <link rel="stylesheet" href="/css/pages/all-items.css">
+    <link rel="stylesheet" th:href="@{/css/components/title-bar.css}">
+    <link rel="stylesheet" th:href="@{/css/components/pinned-fragments.css}">
+    <link rel="stylesheet" th:href="@{/css/components/theme-switcher.css}">
+</head>
+<body class="light-theme">
+<div th:replace="components/nav-bars :: nav_bars"></div>
+<div th:replace="components/theme-switcher :: theme-switcher"></div>
+
+<main>
+    <div id="title-bar">
+        <h1 id="title-text"></h1>
+    </div>
+    <table id="items-table"></table>
+    <button class="main-button" onclick="history.back()">← Back</button>
+</main>
+<script src="/js/pages/all-items.js"></script>
+<script src="/js/components/theme-switcher.js"></script>
+</body>
+</html>

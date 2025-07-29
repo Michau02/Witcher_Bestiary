@@ -18,7 +18,7 @@ public class PotionController {
     @GetMapping("/{id}")
     public String getPotionById(Model model, @PathVariable("id") Long id) {
         model.addAttribute("potion", potionService.findById(id));
-        return "single_potion";
+        return "pages/single-item";
     }
 
 }

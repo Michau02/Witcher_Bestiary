@@ -6,12 +6,13 @@
     <link rel="stylesheet" th:href="@{css/my_button.css}">
     <link rel="stylesheet" th:href="@{css/pinned_fragments.css}">
     <link rel="stylesheet" th:href="@{css/alchemy.css}">
+    <link rel="stylesheet" th:href="@{/css/components/theme-switcher.css}">
 </head>
 <body>
 
-<div th:replace="fragments/title-bar('Alchemy')"></div>
-<div th:replace="fragments/upper_navbar :: upper_navbar"></div>
-<div th:replace="fragments/left_navbar :: left_navbar"></div>
+<div th:replace="components/title-bar('Alchemy')"></div>
+<div th:replace="components/nav-bars :: nav_bars"></div>
+<div th:replace="components/theme-switcher :: theme-switcher"></div>
 
 <div class="button-grid">
     <button class="button-block" onclick="redirect('alchemy/potions')">POTIONS</button>
@@ -19,9 +20,11 @@
     <button class="button-block" onclick="redirect('alchemy/bombs')">BOMBS</button>
     <button class="button-block" onclick="redirect('alchemy/oils')">OILS</button>
     <button class="button-block" onclick="redirect('alchemy/decoctions')">DECOCTIONS</button>
-    <button class="button-block" onclick="redirect('alchemy/home')">HOME</button>
+    <button class="button-block" onclick="redirect('home')">HOME</button>
 </div>
 
-<script src="/js/buttons.js"></script>
+<script src="/js/components/buttons.js"></script>
+<script src="/js/components/theme-switcher.js"></script>
+
 </body>
 </html>

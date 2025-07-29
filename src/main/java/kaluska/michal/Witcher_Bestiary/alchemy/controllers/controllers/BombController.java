@@ -18,6 +18,6 @@ public class BombController {
     @GetMapping("/{id}")
     public String getSingleBomb(@PathVariable("id") Long id, Model model) {
         model.addAttribute("bomb", bombService.findById(id));
-        return "single_bomb";
+        return "pages/single-item";
     }
 }

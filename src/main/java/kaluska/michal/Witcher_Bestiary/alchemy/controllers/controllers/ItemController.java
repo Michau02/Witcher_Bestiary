@@ -12,6 +12,6 @@ public class ItemController {
 
     @GetMapping
     public String getAllItems() {
-        return "all_items";
+        return "pages/all-items";
     }
 }

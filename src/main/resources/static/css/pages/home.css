@@ -1,0 +1,10 @@
+body {
+    font-family: "JetBrains Mono", sans-serif;
+    color: #F1F1F1;
+    background-image: url("../../img/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    background-attachment: fixed;
+}
