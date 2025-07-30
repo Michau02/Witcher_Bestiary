@@ -19,12 +19,12 @@ public class IngredientController {
         return ingredientService.findAll();
     }
 
-    @GetMapping("/{type}")
+    @GetMapping("/type/{type}")
     public List<Ingredient> getIngredientsByType(@PathVariable String type) {
         return ingredientService.findAllByType(IngredientType.valueOf(type));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Ingredient getIngredientById(@PathVariable Long id) {
         return ingredientService.findById(id);
     }

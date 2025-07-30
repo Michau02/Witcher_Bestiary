@@ -29,10 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("title-text").textContent =
                 capitalize(type.slice(0, -1)).concat(" ➡️ ", capitalizedName);
             document.title = capitalizedName;
-            console.log("to sie zrobilo?");
 
             renderProperties(data);
-            console.log("a to nie? XD");
         })
         .catch(error => {
             document.body.innerHTML = `<p>Error: ${error.message}</p>`;
@@ -61,17 +59,42 @@ function renderProperties(data) {
 
         // property
         const property = data[key];
-
         // property as an array
-        if (Array.isArray(property) && property.length > 0) {
-            //for...
+        if (Array.isArray(property) && key === "ingredients") {
+            for (let p of property) {
+                try {
+                    const quantity = p["quantity"]?.toString() ?? "???";
+                    const ingredient = p["ingredient"];
+                    const name = ingredient?.name?.toString() ?? "Unknown";
+                    const ingredientId = ingredient?.id;
+
+                    const valueLabel = document.createElement("label");
+
+                    if (ingredientId) {
+                        const link = document.createElement("a");
+                        link.href = `/ingredients/id/${ingredientId}`; // controller not implemented yet - final url should be something like this: /api/ingredients/id/${ingredientId}
+                        link.textContent = name;
+                        link.style.color = "inherit";
+                        link.style.textDecoration = "underline";
+                        valueLabel.textContent = `- ${quantity}x `;
+                        valueLabel.appendChild(link);
+                    } else {
+                        valueLabel.textContent = `- ${quantity}x ${name}`;
+                    }
+                    myBox.appendChild(valueLabel);
+                } catch (e) {
+                    console.error("Something went wrong with ingredient processing: ", e);
+                    const errorLabel = document.createElement("label");
+                    errorLabel.textContent = "- Unknown due to an error";
+                    errorLabel.style.color = "red";
+                    myBox.appendChild(errorLabel);
+                }
+            }
         }
         // property not an array
         else {
             const valueLabel = document.createElement("label");
-            console.log(property, typeof property);
             valueLabel.textContent = capitalize(property.toString());
-            console.log("po");
             myBox.appendChild(valueLabel);
         }
 
