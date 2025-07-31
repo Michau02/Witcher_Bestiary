@@ -1,13 +1,11 @@
 package kaluska.michal.Witcher_Bestiary.ingredients.services;
 
 import kaluska.michal.Witcher_Bestiary.ingredients.models.Ingredient;
-import kaluska.michal.Witcher_Bestiary.ingredients.models.IngredientType;
 import kaluska.michal.Witcher_Bestiary.ingredients.repositories.IngredientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -16,13 +14,6 @@ public class IngredientService {
 
     public List<Ingredient> findAll() {
         return ingredientRepository.findAll();
-    }
-
-    public List<Ingredient> findAllByType(IngredientType type) {
-        if (Objects.isNull(type)) {
-            return null;
-        }
-        return ingredientRepository.findAllByType(type);
     }
 
     public Ingredient findById(Long id) {

@@ -22,6 +22,10 @@
     <button class="back-button" onclick="history.back()">← Back</button>
 </main>
 
+<script th:inline="javascript">
+    const ITEM_ID = [[${id}]];
+    const ITEM_TYPE = [[${type}]];
+</script>
 <script type="module" src="/js/pages/single-item.js"></script>
 <script src="/js/components/theme-switcher.js"></script>
 

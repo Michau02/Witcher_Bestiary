@@ -10,10 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     container = document.getElementById("properties-container");
 
-    const parts = window.location.href.split("/");
-    const id = parts.at(-1);
-    const type = parts.at(-2);
-
+    const id = ITEM_ID;
+    const type = ITEM_TYPE;
+    
     if (!id) {
         document.body.innerHTML = `<p>Item doesn't exist</p>`;
         return;
@@ -72,12 +71,13 @@ function renderProperties(data) {
 
                     if (ingredientId) {
                         const link = document.createElement("a");
-                        link.href = `/ingredients/id/${ingredientId}`; // controller not implemented yet - final url should be something like this: /api/ingredients/id/${ingredientId}
+                        link.href = `/ingredients/${ingredientId}`;
                         link.textContent = name;
                         link.style.color = "inherit";
                         link.style.textDecoration = "underline";
                         valueLabel.textContent = `- ${quantity}x `;
                         valueLabel.appendChild(link);
+                        console.log(link.href);
                     } else {
                         valueLabel.textContent = `- ${quantity}x ${name}`;
                     }

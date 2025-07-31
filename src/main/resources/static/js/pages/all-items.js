@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add(theme);
 
     table = document.getElementById("items-table");
-    const type = window.location.href.split('/').at(-1)
+    const type = window.location.href.split('/').at(-1);
 
     if (!type) {
         document.body.innerHTML = "<p>No such type</p>";
