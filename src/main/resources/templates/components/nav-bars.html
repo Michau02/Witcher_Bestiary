@@ -1,9 +1,18 @@
-<div th:fragment="nav_bars">
+<div th:fragment="nav_bars"
+     xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <nav class="upper-navbar">
         <ul>
             <li><a th:href="@{/home}">Home</a></li>
             <li><a th:href="@{/favorites}">Favorites</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">Login</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" style="display: inline; " id="logoutForm">
+                    <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
+                </form>
+            </li>
         </ul>
     </nav>
     <nav class="left-navbar">
