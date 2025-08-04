@@ -10,8 +10,8 @@
     <link rel="stylesheet" th:href="@{/css/components/theme-switcher.css}">
 </head>
 <body>
-<div th:replace="components/nav-bars :: nav_bars"></div>
-<div th:replace="components/theme-switcher :: theme-switcher"></div>
+<div th:replace="~{components/nav-bars :: nav_bars}"></div>
+<div th:replace="~{components/theme-switcher :: theme-switcher" }></div>
 
 <main>
     <div class="title-bar">

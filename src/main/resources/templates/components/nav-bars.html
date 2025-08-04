@@ -6,7 +6,7 @@
             <li><a th:href="@{/home}">Home</a></li>
             <li><a th:href="@{/favorites}">Favorites</a></li>
             <li sec:authorize="!isAuthenticated()">
-                <a th:href="@{/login}">Login</a>
+                <a href="#" onclick="openLoginPopup(); return false;">Login</a>
             </li>
             <li sec:authorize="isAuthenticated()">
                 <form th:action="@{/logout}" method="post" style="display: inline; " id="logoutForm">

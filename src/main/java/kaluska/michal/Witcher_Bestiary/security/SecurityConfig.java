@@ -3,7 +3,6 @@ package kaluska.michal.Witcher_Bestiary.security;
 import kaluska.michal.Witcher_Bestiary.user.Role;
 import kaluska.michal.Witcher_Bestiary.user.User;
 import kaluska.michal.Witcher_Bestiary.user.UserRepository;
-import kaluska.michal.Witcher_Bestiary.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -22,7 +21,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class SecurityConfig {
-    private final UserService userService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -33,7 +31,7 @@ public class SecurityConfig {
                 )
                 .formLogin(
                         form -> form
-                                .loginPage("/login")
+                                .loginPage("/home")
                                 .defaultSuccessUrl("/home", false)
                                 .permitAll()
                 )

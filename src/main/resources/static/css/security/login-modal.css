@@ -1,0 +1,56 @@
+.modal {
+    display: none;
+    z-index: 100000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.visible {
+    opacity: 1;
+    display: flex;
+}
+
+.modal-content {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border: 2px #aaaaaa;
+    box-shadow: 0 0 10px 10px whitesmoke;
+    color: white;
+    width: 30vw;
+    height: 50vh;
+    border-radius: 10px;
+    font-family: monospace;
+    overflow: hidden;
+}
+
+.close-button {
+    color: #aaaaaa;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 20px;
+    height: 20px;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.close-button:active {
+    background-color: rgba(0, 0, 0, 0.7);
+}

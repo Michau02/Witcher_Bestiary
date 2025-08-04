@@ -11,9 +11,9 @@
 </head>
 <body>
 
-<div th:replace="components/title-bar('Alchemy')"></div>
-<div th:replace="components/nav-bars :: nav_bars"></div>
-<div th:replace="components/theme-switcher :: theme-switcher"></div>
+<div th:replace="~{components/title-bar('Alchemy')}"></div>
+<div th:replace="~{components/nav-bars :: nav_bars}"></div>
+<div th:replace="~{components/theme-switcher :: theme-switcher}"></div>
 
 <div class="button-grid">
     <button class="button-block" onclick="redirect('alchemy/potions')">POTIONS</button>
