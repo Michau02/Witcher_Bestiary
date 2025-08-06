@@ -4,7 +4,13 @@
     <nav class="upper-navbar">
         <ul>
             <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/favorites}">Favorites</a></li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/favorites}">Favorites</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a href="#" onclick="openLoginPopup(); return false;">Favorites</a>
+            </li>
+
             <li sec:authorize="!isAuthenticated()">
                 <a href="#" onclick="openLoginPopup(); return false;">Login</a>
             </li>

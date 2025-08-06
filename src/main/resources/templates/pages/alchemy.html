@@ -8,12 +8,14 @@
     <link rel="stylesheet" th:href="@{css/pages/alchemy.css}">
     <link rel="stylesheet" th:href="@{/css/components/theme-switcher.css}">
     <link rel="stylesheet" th:href="@{/css/components/title-bar.css}">
+    <link rel="stylesheet" th:href="@{/css/security/login-modal.css}">
 </head>
 <body>
 
 <div th:replace="~{components/title-bar('Alchemy')}"></div>
 <div th:replace="~{components/nav-bars :: nav_bars}"></div>
 <div th:replace="~{components/theme-switcher :: theme-switcher}"></div>
+<div th:replace="~{security/login-modal :: login-modal}"></div>
 
 <div class="button-grid">
     <button class="button-block" onclick="redirect('alchemy/potions')">POTIONS</button>
@@ -26,6 +28,6 @@
 
 <script src="/js/components/buttons.js"></script>
 <script src="/js/components/theme-switcher.js"></script>
-
+<script src="/js/security/login-modal.js"></script>
 </body>
 </html>

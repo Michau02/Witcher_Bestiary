@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.savedrequest.SavedRequest;
 
 import java.util.List;
 
@@ -26,13 +27,22 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/home", "/login", "/register", "/css/**", "/js/**", "/img/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/favorites").authenticated()
+                        .anyRequest().permitAll()
                 )
                 .formLogin(
                         form -> form
-                                .loginPage("/home")
-                                .defaultSuccessUrl("/home", false)
+                                .loginProcessingUrl("/login")
+                                .successHandler((request, response, authentication) -> {
+                                    var saved = request.getSession().getAttribute("SPRING_SECURITY_SAVED_REQUEST");
+
+                                    if (saved instanceof SavedRequest savedRequest) {
+                                        response.sendRedirect(savedRequest.getRedirectUrl());
+                                    } else {
+                                        String referer = request.getHeader("Referer");
+                                        response.sendRedirect(referer != null ? referer : "/home");
+                                    }
+                                })
                                 .permitAll()
                 )
                 .logout(logout -> logout
