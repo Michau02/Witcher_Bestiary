@@ -1,27 +1,26 @@
 package kaluska.michal.Witcher_Bestiary.security;
 
-import kaluska.michal.Witcher_Bestiary.user.Role;
-import kaluska.michal.Witcher_Bestiary.user.User;
-import kaluska.michal.Witcher_Bestiary.user.UserRepository;
+import kaluska.michal.Witcher_Bestiary.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.savedrequest.SavedRequest;
-
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 @Slf4j
 public class SecurityConfig {
+
+    private final UserService userService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -49,30 +48,23 @@ public class SecurityConfig {
                         .logoutSuccessHandler((request, response, authentication) -> {
                             log.info("User '{}' logged out", authentication.getName());
                             response.sendRedirect("/home");
-                            logout.permitAll();
                         })
+                        .permitAll()
                 );
 
         return http.build();
     }
 
     @Bean
-    public CommandLineRunner init(UserRepository repo) {
-        String newUserName = "a";
-        return args -> {
-            if (repo.findByUsername(newUserName).isEmpty()) {
-                var user = new User();
-                user.setUsername(newUserName);
-                user.setEmail(newUserName.concat("@example.com"));
-                user.setPassword(newUserName);
-                user.setRoles(List.of(Role.USER));
-                repo.save(user);
-            }
-        };
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.userDetailsService(userService)
+                .passwordEncoder(passwordEncoder());
+        return authenticationManagerBuilder.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 }
