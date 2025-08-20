@@ -1,9 +1,12 @@
-package kaluska.michal.Witcher_Bestiary.security;
+package kaluska.michal.Witcher_Bestiary.security.controller;
 
+import jakarta.validation.Valid;
+import kaluska.michal.Witcher_Bestiary.security.dto.RegistrationRequest;
 import kaluska.michal.Witcher_Bestiary.user.Role;
 import kaluska.michal.Witcher_Bestiary.user.User;
 import kaluska.michal.Witcher_Bestiary.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,11 +14,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,30 +35,28 @@ public class RegistrationController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@RequestParam String username, @RequestParam String password,
-                               @RequestParam String confirmPassword, Model model) {
+    public String registerUser(@Valid @ModelAttribute RegistrationRequest request,
+                               BindingResult bindingResult,
+                               Model model) {
 
-        if (username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
-            model.addAttribute("error", "All fields (username, password, confirmed password) should be filled for successful registration.");
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("error", bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining(", ")));
             return "security/registration";
         }
-        if (!password.equals(confirmPassword)) {
-            model.addAttribute("error", "Passwords do not match.");
-            return "security/registration";
-        }
-        if (userRepository.findByUsername(username).isPresent()) {
-            model.addAttribute("error", "User already exists. Try with another username!");
+
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+            model.addAttribute("error", "User with given email already exists");
             return "security/registration";
         }
 
         User user = new User();
-        user.setUsername(username);
-        user.setEmail(username.concat("@gmail.com"));
-        user.setPassword(passwordEncoder.encode(password));
+        user.setUsername(request.getUsername());
+        user.setEmail(request.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRoles(List.of(Role.USER));
         userRepository.save(user);
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 

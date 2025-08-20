@@ -11,9 +11,22 @@
     <div th:if="${error}" style="color: red;" th:text="${error}"></div>
     <div th:if="${success}" style="color: green;" th:text="${success}"></div>
     <form th:action="@{/register}" method="post">
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <input type="password" name="confirmPassword" placeholder="Confirm Password" required> <br>
+        <label>
+            Enter username<br>
+            <input type="text" name="username" placeholder="Username" required>
+        </label><br>
+        <label>
+            Enter password<br>
+            <input type="password" name="password" placeholder="Password" required>
+        </label><br>
+        <label>
+            Confirm password<br>
+            <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+        </label> <br>
+        <label>
+            Enter e-mail address<br>
+            <input type="text" name="email" placeholder="E-mail" required>
+        </label> <br>
         <button type="submit">Create account</button>
         <a th:href="@{/home}">Back to home</a>
     </form>

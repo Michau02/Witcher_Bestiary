@@ -21,6 +21,11 @@ body {
     width: 20vw;
 }
 
+.container input {
+    padding: 2px;
+    margin-bottom: 5px;
+}
+
 button {
     display: block;
     padding: 12px;

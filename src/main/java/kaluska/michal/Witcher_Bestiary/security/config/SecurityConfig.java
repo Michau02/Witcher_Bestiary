@@ -1,4 +1,4 @@
-package kaluska.michal.Witcher_Bestiary.security;
+package kaluska.michal.Witcher_Bestiary.security.config;
 
 import kaluska.michal.Witcher_Bestiary.user.UserService;
 import lombok.RequiredArgsConstructor;
